@@ -9,6 +9,7 @@ import {PlaylistImpl} from '../../models/playlist/playlist.model';
 import {PlaylistsImpl} from '../../models/playlists/playlists.model';
 import {TrackService} from '../../services/track/track.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { webSocket } from 'rxjs/webSocket';
 
 @Component({
   selector: 'app-playlists',
@@ -35,7 +36,34 @@ export class PlaylistsComponent implements OnInit {
   ngOnInit() {
     this.updatePlaylists()
     this.tracksService.tracksUpdated$.subscribe(tracks => this.updatePlaylists());
+    this.startWebsocketConnection();
+  }
 
+  public startWebsocketConnection(): void {
+    // WS
+    const subject = webSocket({
+      url: 'ws://localhost:8080/Spotitubes/ws/tracks',
+      deserializer: msg => JSON.parse(msg.data),
+      serializer: msg => JSON.stringify(msg),
+      openObserver: {
+        next: () => console.log('WebSocket connection established'),
+      },
+      closeObserver: {
+        next: () => console.log('WebSocket connection closed'),
+      },
+    }); // WS: Url to connect to
+
+    subject.subscribe({
+      next: msg => this.updateTracks(msg as Playlist), // Called whenever there is a message from the server.
+      error: err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      complete: () => console.log('complete') // Called when connection is closed (for whatever reason).
+    });
+  }
+
+  public updateTracks(playlist: Playlist): void {
+    if(playlist.id === this.selectedPlayistId) {
+      this.selectedPlaylistChange.emit(playlist);
+    }
   }
 
   /**
