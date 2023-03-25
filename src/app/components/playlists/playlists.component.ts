@@ -44,16 +44,16 @@ export class PlaylistsComponent implements OnInit {
   public startWebsocketConnection(): void {
     // WS
     const subject = webSocket({
-      url: 'ws://localhost:8080/Spotitubes/ws/tracks',
-      deserializer: msg => JSON.parse(msg.data),
-      serializer: msg => JSON.stringify(msg),
+      url: 'ws://localhost:8080/Spotitubes/ws/tracks', // WS: Url to connect to.
+      deserializer: msg => JSON.parse(msg.data), // How to parse the messages received from the server.
+      serializer: msg => JSON.stringify(msg), // How to serialize messages sent to the server.
       openObserver: {
-        next: () => console.log('WebSocket connection established'),
+        next: () => console.log('WebSocket connection established'), // Called when connection is established.
       },
       closeObserver: {
-        next: () => console.log('WebSocket connection closed'),
+        next: () => console.log('WebSocket connection closed'), // Called when connection is closed.
       },
-    }); // WS: Url to connect to
+    });
 
     subject.subscribe({
       next: msg => this.updateTracks(msg as Playlist), // Called whenever there is a message from the server.
