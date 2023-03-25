@@ -10,6 +10,7 @@ import {PlaylistsImpl} from '../../models/playlists/playlists.model';
 import {TrackService} from '../../services/track/track.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { webSocket } from 'rxjs/webSocket';
+import { Tracks } from 'app/models/tracks/tracks.interface.model';
 
 @Component({
   selector: 'app-playlists',
@@ -26,6 +27,7 @@ export class PlaylistsComponent implements OnInit {
   private newPlaylistDialogRef: MatDialogRef<NewPlaylistDialogComponent>;
 
   @Output() selectedPlaylistChange = new EventEmitter<Playlist>();
+  @Output() selectedTracksChange = new EventEmitter<Tracks>();
 
   constructor(private playlistService: PlaylistService,
               private tracksService: TrackService,
@@ -62,9 +64,8 @@ export class PlaylistsComponent implements OnInit {
 
   public updateTracks(playlist: Playlist): void {
     if(playlist.id === this.selectedPlayistId) {
-      // This won't work immediately because the other values of playlist are not set.
-      // This should be fixed either in the backend or in the frontend.
-      this.selectedPlaylistChange.emit(playlist);
+      const tracks : Tracks = { tracks: playlist.tracks }
+      this.selectedTracksChange.emit(tracks);
     }
   }
 

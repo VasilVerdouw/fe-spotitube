@@ -63,7 +63,7 @@ export class PlaylistComponent {
       .catch(any => this.setEmptyTracklists());
   }
 
-  private setTracks(tracks: Tracks): void {
+  public setTracks(tracks: Tracks): void {
     if (tracks) {
       this.dataSource = new TracksDataSource(tracks);
       this.tracks = tracks;
