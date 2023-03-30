@@ -50,9 +50,9 @@ export class PlaylistsComponent implements OnInit {
       openObserver: {
         next: () => console.log('WebSocket connection established'), // Called when connection is established.
       },
-      closeObserver: {
-        next: () => console.log('WebSocket connection closed'), // Called when connection is closed.
-      },
+      // closeObserver: {
+      //   next: () => console.log('WebSocket connection closed'), // Called when connection is closed.
+      // },
     });
 
     subject.subscribe({
