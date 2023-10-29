@@ -3,6 +3,8 @@
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
 
+**FORKED:** Made some minor changes to this version to support websockets at front-end level. This is just a proof of concept.
+
 ## Hosted version
 
 Local installation (see bottom of this file) of the Spotitube front-end (i.e. the client) is not recommended due to outdated dependencies. Therefore, use the web-based version found here:
