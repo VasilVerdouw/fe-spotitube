@@ -1,9 +1,16 @@
 # Spotitube [![Build Status](https://travis-ci.org/HANICA-DEA/spotitube.svg?branch=master)](https://travis-ci.org/HANICA-DEA/spotitube) [![Coverage Status](https://coveralls.io/repos/github/HANICA-DEA/spotitube/badge.svg?branch=master)](https://coveralls.io/github/HANICA-DEA/spotitube?branch=master)
 
+## FORKED
+This fork contains minor changes to support websockets in certain areas of the front end. 
+
+This is just a proof of concept.
+
+This proof of concept has been made for a school assignment to research websocket connections.
+
+*Original README below*
+
 This repository contains a front-end for the final programming assignment 
 of the course OOSE-DEA at the [HAN University of Applied Sciences](https://www.han.nl/).
-
-**FORKED:** Made some minor changes to this version to support websockets at front-end level. This is just a proof of concept.
 
 ## Hosted version
 
